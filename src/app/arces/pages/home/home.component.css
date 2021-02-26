@@ -1,0 +1,54 @@
+.spinner{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    /* background: url('C:\Users\NEC\Desktop\api completed realtor\src\assets\img\giphy (1).gif'); */
+    background-size: 100%;
+    
+}
+#viewdetail
+{
+    position:absolute;
+
+}
+.slick-slider {
+    width: 90%;
+    margin: auto;
+    background:white;
+  }
+  
+  .nav-btn {
+    height: 47px;
+    position: absolute;
+    width: 26px;
+    cursor: pointer;
+    top: 100px !important;
+  }
+  
+  .prev-slide.slick-disabled,
+  .next-slide.slick-disabled {
+    pointer-events: none;
+    opacity: 0.2;
+  }
+  
+  .prev-slide {
+    background: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg") no-repeat scroll 0 0;
+    left: -33px;
+  }
+  
+  .next-slide {
+    background: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg") no-repeat scroll -24px 0px;
+    right: -33px;
+  }
+  
+  .prev-slide:hover {
+    background-position: 0px -53px;
+  }
+  
+  .next-slide:hover {
+    background-position: -24px -53px;
+  }

@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="header-1"></div>
+<!-- Subheader Start -->
+<div class="subheader bg-cover bg-center dark-overlay" style="background-image: url('assets/img/subheader.jpg')">
+    <div class="container">
+        <div class="subheader-inner">
+            <h1 class="text-white">Mortgauge Pre-Approval</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> </a></li>
+                    <li class="breadcrumb-item"><a href="#">Mortgauge Pre-Approval</a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Subheader End -->
+<!-- morgrage form started  -->
+        <div class="row">
+            <div class="col-lg-12">
+                    <br>
+                    <div class="comment-form">
+                        <form method="" [formGroup]="morgrageappdata" (ngSubmit)="morgarageformdata()" >
+                            <div class="row pl-2" >
+                                <div class="col-md-6 form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" class="form-control" placeholder="Full Name" formControlName="firstName">
+                                    <span class="error" *ngIf="fname.invalid && fname.touched">*Required</span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+                                    <span class="error" *ngIf="lname.invalid && lname.touched">*Required</span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" placeholder="Phone Number" formControlName="phoneNo">
+                                    <span class="error" *ngIf="pno.invalid && pno.touched">*Required</span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" class="form-control" placeholder="Email Address" formControlName="email">
+                                    <span class="error" *ngIf="email.invalid && email.touched">*Required</span>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label>Subject</label>
+                                    <input type="text" class="form-control" placeholder="Email Address" formControlName="subject">
+                                    <span class="error" *ngIf="sbj.invalid && sbj.touched">*Required</span>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label>Your Message</label>
+                                    <textarea class="form-control" placeholder="Type your message..." name="comment" rows="7" formControlName="message"></textarea>
+                                    <span class="error" *ngIf="msg.invalid && msg.touched">*Required</span>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-custom primary col-sm-3" name="button">Submit</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+<!-- morgrage form started  End-->
+<app-footer></app-footer>

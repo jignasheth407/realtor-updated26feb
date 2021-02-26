@@ -1,0 +1,184 @@
+<app-header></app-header>
+<div class="header-1"></div>
+<!-- Subheader Start -->
+<div class="subheader bg-cover bg-center dark-overlay" style="background-image: url('assets/img/subheader.jpg')">
+    <div class="container">
+        <div class="subheader-inner">
+            <h1 class="text-white">Contact Us</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Subheader End -->
+<!-- Icons Start -->
+<div class="section section-padding infographics-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="acr-infographic-item">
+                    <i class="flaticon-telephone"></i>
+                    <div class="acr-infographic-item-body">
+                        <h5>Reach Out</h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <a href="#" class="btn-custom secondary btn-sm">Call Us</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="acr-infographic-item">
+                    <i class="flaticon-location"></i>
+                    <div class="acr-infographic-item-body">
+                        <h5>Find Us</h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <a href="#" class="btn-custom secondary btn-sm">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="acr-infographic-item">
+                    <i class="flaticon-speech-bubble"></i>
+                    <div class="acr-infographic-item-body">
+                        <h5>Get Support</h5>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <a href="#" class="btn-custom secondary btn-sm">Start Chat</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Icons End -->
+<!-- Contact Start -->
+<div class="section pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-wrap section-header">
+                    <h5 class="custom-primary">Contact Us</h5>
+                    <h2 class="title">Got Any Questions?</h2>
+                </div>
+                <div class="comment-form">
+                    <form [formGroup]="vistordata" (ngSubmit)="vistdata()">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" placeholder="Full Name" formControlName="FirstName" required>
+                                <span *ngIf="firstname.invalid && firstname.touched" class="error">*Required</span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Subject" formControlName="LastName">
+                                <span *ngIf="lastname.invalid && lastname.touched" class="error">*Required</span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Phone Number" formControlName="PhoneNo">
+                                <span *ngIf="phoneno.invalid && phoneno.touched" class="error">*Required</span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" placeholder="Email Address" formControlName="Email">
+                                <span *ngIf="email.invalid && email.touched" class="error">*Required</span>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Subject</label>
+                                <input type="text" class="form-control" placeholder="Email Address" formControlName="Subject">
+                                <span *ngIf="subject.invalid && subject.touched" class="error">*Required</span>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Your Message</label>
+                                <textarea class="form-control" placeholder="Type your message..." formControlName="Message" rows="7"></textarea>
+                                <span *ngIf="msg.invalid && msg.touched" class="error">*Required</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-custom primary" name="button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-12" *ngIf="contectblock">
+                <div class="acr-locations bg-bottom bg-norepeat" style="background-image: url('assets/img/misc/bldg.png')">
+                   <div>
+                        <h5>User's list</h5>
+                        <table class="table" *ngFor="let contectdata of contectquerydata | paginate : { id : 'listing_pagination', itemsPerPage : 2,currentPage : page,totalItems:totalrecords }">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">CompanyID</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">FirstName</th>
+                                <th scope="col">LastName</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">PhoneNo</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">IsReplied</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">{{ contectdata.id }}</th>
+                                <td>{{ contectdata.companyId }}</td>
+                                <td>{{ contectdata.email }}</td>
+                                <td>{{ contectdata.firstName }}</td>
+                                <td>{{ contectdata.lastName }}</td>
+                                <td>{{ contectdata.message }}</td>
+                                <td>{{ contectdata.phoneNo }}</td>
+                                <td>{{ contectdata.subject }}</td>
+                                <td *ngIf="contectdata.isReplied else no">Yes</td>
+                                <ng-template  #no>
+                                    <td>No</td>
+                                </ng-template>
+                                <td><a data-toggle="tooltip" title="delete" class="listing-gallery" (click)="vistdelete(contectdata.id)"><i class="fa fa-trash"></i></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                   </div>
+                     <!-- Pagination Start -->
+                   <div>
+                    <pagination-controls class="pagination "  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                  </div>
+                    <!-- Pagination End -->
+                    <!-- <div class="row">
+                         <div class="col-lg-6">
+                            <div class="acr-location">
+                                <h5>User Query Detail</h5>
+                                <h5>Radwik Botson</h5>
+                                <div class="acr-location-address"  style="display: flex;">
+                                     <p>Property Sell || rAd@gmail.com</p>
+                                    <a href="tel:+123456789">(478) 339 120</a>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            hello,
+                              i am radwik i want to sell my property so i need some sugestion and query's regarding to this and thier are some issue to that i want to discuss with you by persnal meet if you are inteseted please connect
+                        </p>
+                        <div class="comment-form">
+                            <form method="">
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label>To Email Address</label>
+                                        <input type="email" class="form-control" placeholder="Email Address" name="email" value="">
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label>Query Reply</label>
+                                        <textarea class="form-control" placeholder="Query Reply...!!" name="comment" rows="7"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-custom primary" name="button">Send Reply</button>
+                            </form>
+                        </div>
+                    <div>
+                    </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<app-footer></app-footer>

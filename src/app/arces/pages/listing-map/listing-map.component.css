@@ -1,0 +1,59 @@
+.btn1 {
+    background:white;
+    height: 30px;
+    min-width: 50px;
+    border: none;
+    color: black;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left:0px;
+    float: center;
+   
+  }
+  
+
+  
+  .btn1:hover  {
+    
+    border-bottom: 3px solid black;
+  }
+ 
+.active ,.btn1:active{
+    
+    border-bottom: 3px solid black; 
+    
+  }
+  .spinner{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: 70px;
+    margin-top: -50px;
+    background-size: 100%;
+    
+}
+#viewdetail
+{
+    position:absolute;
+    margin-bottom: 6px;
+    padding-bottom:3px;
+
+}
+#searchdatalist
+{
+  overflow:scroll;
+}
+#searchbutton.active
+{
+ border-bottom: none !important;
+ color: white!important;
+}
+
+
+
+#bt {
+    background-color: #01BBBC;
+    margin-left: 100px;
+}

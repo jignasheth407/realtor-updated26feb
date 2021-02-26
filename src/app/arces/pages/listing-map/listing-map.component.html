@@ -1,0 +1,251 @@
+<app-header></app-header>
+<div class="section section-padding">
+    <div class="container">
+        <div  style="background-color: gray;" >
+            <div class="container pt-5">
+                <div class="subheader-inner">
+                    <h1 class="text-white"><br>MLS Listing Search</h1>
+                </div>
+            </div>
+        </div>
+        <!-- mapping serach block -->
+        <div class="listing-map-wrapper">
+            <!-- Listings Start -->
+            <div class="listing-main-wrapper">
+                <!-- Filter Start -->
+                <form [formGroup]="searchdata">
+                    <div class="col-md-12 form-group ml-auto text-right">
+                        <button type="submit"  class="btn1 active"(click)="resi()">RESIDENTIAL</button>&nbsp;
+                        <button type="submit"  class="btn1" (click)="com()">COMMERCIAL</button>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="row">
+                          <div class="col-md-12 form-group">
+                            <select class="form-control" name="status" formControlName="cityname">
+                                <option value=""disabled selected hidden>Select By City Name Optional</option>
+                                <option value="{{ cityname.name }}" *ngFor="let cityname of dropdowndata ">{{ cityname.name }}</option>
+                            </select>
+                          </div>
+                          <div class="col-md-12 form-group">
+                            <input  name="content" rows="4" class="form-control" placeholder="Search by City,Community or MLS#" formControlName="Mlsmo">
+                        </div>
+                        <div class="col-md-2 form-group">
+                            <select class="form-control" name="status">
+                                <option value=""disabled selected hidden>Min Price</option>
+                                <option value="20000">20000</option>
+                                <option value="30000">30000</option>
+                                <option value="40000">40000</option>
+                                <option value="50000">50000</option>
+                                <option value="60000">60000</option>
+                                <option value="70000">70000</option>
+                                <option value="80000">80000</option>
+                                <option value="90000">90000</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2form-group">
+                            <select class="form-control" name="status">
+                                <option value=""disabled selected hidden >Max Price</option>
+                                <option value="20000">20000</option>
+                                <option value="30000">30000</option>
+                                <option value="40000">40000</option>
+                                <option value="50000">50000</option>
+                                <option value="60000">60000</option>
+                                <option value="70000">70000</option>
+                                <option value="80000">80000</option>
+                                <option value="90000">90000</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" name="status">
+                                <option value=""disabled selected hidden>Bedrooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 form-group">
+                            <select class="form-control" name="status" >
+                                <option value="" disabled selected hidden>Bath Rooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                          <div class="col-md-2">
+                              <select class="form-control" name="status" formControlName="propertytype" >
+                                  <option >Property Type</option>
+                                  <!-- 0-No Preference|1-House|2-Duplex|3-Triplex|5-Residential Commercial Mix|
+                                  6-Mobile Home|12-Special Purpose|14-Other|16-Row / Townhouse|17-Apartment
+                                  |19-Fourplex
+                                  |20-Garden Home
+                                  |26-Modular|27-Manufactured Home/Mobile|28-Commercial Apartment|29-Manufactured Home -->
+                                  <option value="0">No Preference</option>
+                                  <option value="1">House</option>
+                                  <option value="2">Duplex</option>
+                                  <option value="3">Triplex</option>
+                                  <option value="5">Residential Commercial Mix</option>
+                                  <option value="6">Mobile Home</option>
+                                  <option value="12">Special Purpose</option>
+                                  <option value="14">Other</option>
+                                  <option value="16">Row / Townhouse</option>
+                                  <option value="17">Apartment</option>
+                                  <option value="19">Fourplex</option>
+                                  <option value="20">Garden Home</option>
+                                  <option value="26">Modular</option>
+                                  <option value="27">Manufactured Home/Mobile</option>
+                                  <option value="28">Commercial Apartment</option>
+                                  <option value="29">Manufactured Home</option>
+                              </select>
+                          </div>
+                          <div class="col-md-2 form-group">
+                          <select class="form-control" name="status" >
+                            <option value=""disabled selected hidden>transectiontype</option>
+                                  <option value="2">For Sale</option>
+                                  <option value="3">For Reant</option>
+                              </select><br>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-md-5 form-group ml-auto text-right">
+                          <button type="submit" class="col-md-5 btn-custom secondary" (click)="searchquerys()" id="#bt">SEARCH</button>
+                      </div>
+                      </div>
+                      </form>
+                <!-- Filter End -->
+                  
+                <div class="row" style="min-height: 2000px;" >
+                    
+                    <div class="row" sstyle="min-height: fit-content;">
+                     <div class="col-md-12 col-sm-12" *ngIf="search">
+                        <div *ngIf="loading" >
+                                <div class="spinner"></div>
+                                   
+                        </div>
+                         <div *ngIf="mlsresult.Results.length > 0 else mlsdata">
+                        <div class="listing" *ngFor="let searchdata of mlsresult.Results  | paginate : { id : 'listing_pagination', itemsPerPage : 2,currentPage : page,totalItems:totalrecords }"style="max-width: 350px; height:600px;margin:10px;">
+                            <div class="listing-thumbnail">
+                                <a routerLink='/listing-detail-v1'><img src="{{ searchdata.Property.Photo[0].HighResPath }}"style="max-height: 180px; min-width: 320px;"></a>
+                                <div class="listing-badges">
+                                    
+                                    <span class="listing-badge sale"> {{ searchdata.Property.TransactionType }}</span>
+                                </div>
+                                <div class="listing-controls">
+                                    <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                                    <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                    <!-- <a href="#" class="fly-to-location" data-lat="-77.003168" data-lng="38.894651"><i class="fas fa-map-marker-alt"></i></a> -->
+                                </div>
+                            </div>
+                            <div class="listing-body">
+                                <div class="listing-author">
+                                    <img src="assets/img/people/1.jpg" alt="author">
+                                    <div class="listing-author-body">
+                                        <!-- <p> <a href="#">Randy Blue</a> </p> -->
+                                        
+                                    </div>
+                                    <div class="dropdown options-dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                       
+                                    </div>
+                                </div>
+                                <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="Theodore Lowe, Azusa New York 39531">Theodore Lowe, Azusa New York 39531</a> </h5>
+                                <span class="listing-price">{{ searchdata.Property.Price }}</span>
+                               
+                                <div class="acr-listing-icons">
+                                    <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                        <i class="flaticon-bedroom"></i>
+                                        <span class="acr-listing-icon-value">{{ searchdata.Building.BathroomTotal }}</span>
+                                    </div>
+                                    <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                        <i class="flaticon-bathroom"></i>
+                                        <span class="acr-listing-icon-value">{{ searchdata.Building.Bedrooms }}</span>
+                                    </div>
+                                    <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                        <i class="flaticon-ruler"></i>
+                                        <span class="acr-listing-icon-value">{{ searchdata.Land.SizeTotal }}</span>
+                                    </div>
+                                </div>
+                                <div class="listing-gallery-wrapper">
+                                    <a  routerLink='/listing-detail-v1/{{ searchdata.Id }}/{{ searchdata.MlsNumber }}' class="btn-custom btn-sm secondary" id="viewdetail">View Details</a>
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ng-template #mlsdata>
+                       <div>not data to show</div>
+                    </ng-template>
+                    </div>
+                    
+                     
+                    </div>
+                    <!-- Listing Start -->
+                    <div class="col-md-12 col-sm-12" *ngIf="dropstates">
+                        <div *ngIf="loading" >
+                            <div class="spinner"></div>
+                               
+                        </div>
+                        <div class="row" style="max-width: auto;">
+                           
+                            <div class="listing" *ngFor="let featurelistdetails of dropdownsearchdetails.Results  | paginate : { id : 'listing_pagination', itemsPerPage : 5,currentPage : page,totalItems:totalrecords }"style="max-width: 300px; max-height: 620px;margin:10px;">
+                                <div class="listing-thumbnail">
+                                    <a routerLink='/listing-detail-v1'><img src="{{ featurelistdetails.Property.Photo[0].HighResPath }}" alt="listing" style="max-height: 200px; min-width: 320px;"></a>
+                                    <div class="listing-badges">
+                                        
+                                        <span class="listing-badge sale"> {{ featurelistdetails.Property.TransactionType }}</span>
+                                    </div>
+                                    <div class="listing-controls">
+                                        <a  class="favorite" (click)="saveproperty(featurelistdetails.MlsNumber)"><i class="far fa-heart"></i></a>
+                                        <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                        <!-- <a href="#" class="fly-to-location" data-lat="-77.003168" data-lng="38.894651"><i class="fas fa-map-marker-alt"></i></a> -->
+                                    </div>
+                                </div>
+                                <div class="listing-body">
+                                   
+                                    <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="{{ featurelistdetails.Property.Address.AddressText }}">{{ featurelistdetails.Property.Address.AddressText }}</a> </h5>
+                                    <span class="listing-price">{{ featurelistdetails.Property.Price }} </span>
+                                    
+                                    <div class="acr-listing-icons"  style="min-height: 120px;">
+                                        <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                            <i class="flaticon-bedroom"></i>
+                                            <span class="acr-listing-icon-value">{{ featurelistdetails.Building.Bedrooms }}</span>
+                                        </div>
+                                        <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                            <i class="flaticon-bathroom"></i>
+                                            <span class="acr-listing-icon-value">{{ featurelistdetails.Building.BathroomTotal }}</span>
+                                        </div>
+                                        <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                            <i class="flaticon-ruler"></i>
+                                            <span class="acr-listing-icon-value">{{ featurelistdetails.Land.SizeTotal }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="listing-gallery-wrapper">
+                                        <a  routerLink='/listing-detail-v1/{{ featurelistdetails.Id }}/{{ featurelistdetails.MlsNumber }}'  class="btn-custom btn-sm secondary"id="viewdetail">View Details</a>
+                                        
+                                    </div>
+                                </div>
+                             </div></div>
+                    
+                     <div>
+                        <pagination-controls class="pagination "  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                    </div>
+                    </div>
+                    
+                    <!-- Listing End -->
+                    <!-- Listing Start -->
+                   
+                    <!-- Listing End -->
+                </div>
+            </div>
+            <!-- Listings End -->
+            <!-- Map Start -->
+            <div class="listing-map">
+                <div id="map"></div>
+            </div>
+            <!-- Map End -->
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

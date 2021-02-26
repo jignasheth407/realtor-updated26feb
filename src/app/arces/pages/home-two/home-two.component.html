@@ -1,0 +1,247 @@
+<app-header></app-header>
+<!-- Banner Start -->
+<div class="banner banner-4 bg-cover bg-center">
+    <div class="container">
+        <div class="banner-item">
+            <div class="banner-inner">
+                <div class="banner-text">
+                    <div class="acr-dots-wrapper">
+                        <div class="acr-dots"></div>
+                    </div>
+                    <br>
+                    <h1 class="title">Manage Appointments</h1>
+                    <p class="subtitle">Thousands of people have Appointments to you. Don't miss your chance to meet new one's</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-bg bg-center bg-cover" style="background-image: url('assets/img/banner/4.jpg')"></div>
+</div>
+<!-- Banner End -->
+<div *ngIf="isadmin">
+    <!-- Categories Start -->
+    <div class="section pt-0">
+        <div class="container">
+            <div class="section-title-wrap section-header">
+                <h2 class="title">User's For Appointment</h2>
+            </div>
+        </div>
+    </div>
+    <!-- Categories End -->
+    <!-- Listings Start -->
+    <div class="section pt-0 ">
+        <div class="container" *ngIf="appointment.length >0 else noappointment">
+            <div class="row">
+                <!-- Posts Start -->
+                <div class="col-lg-6 " >
+                    <!-- error reponse -->
+                    <div class="alert alert-danger" role="alert" *ngIf="errorstates">
+                       {{ adminappoinmetviewerror }}
+                    </div>
+                    <!-- error response End -->
+                    <!-- Listing Start -->
+                    <div class="listing listing-list " *ngFor="let apointmentdetails of appointment | paginate : { id : 'listing_pagination', itemsPerPage : 3,currentPage : page,totalItems:totalrecords }">
+                        <div class="listing-body">
+                            <div class="listing-author">
+                                <div class="listing-author-body">
+                                    <p>SNo : {{ apointmentdetails.id }}</p>
+                                    <p>Preferred Date : {{ apointmentdetails.preferredDate }}</p>
+                                    <p>PreferredTime : {{ apointmentdetails.preferredTime }}</p>
+                                    <p>PropertyID : {{ apointmentdetails.propertyID }}</p>
+                                    <p>ReferenceNumber : {{ apointmentdetails.referenceNumber }}</p>
+                                </div>
+                            </div>
+                            <!-- <a href="mailto:+123456789"> <i class="fas fa-envelope"></i> k@gmail</a>&nbsp;
+                            <a href="tel:+123456789"> <i class="fas fa-phone"></i> +123456789</a>
+                            <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+                            <div class="listing-gallery-wrapper">
+                                <a data-toggle="tooltip" title="delete" class="listing-gallery" (click)="deleteappointment( apointmentdetails.id )"> <i class="fa fa-trash"></i> </a>
+                                <!-- <a routerLink='/home-v3' data-toggle="tooltip" title="edit" class="listing-gallery"> <i class="fa fa-edit"></i> </a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Listing End -->
+                    <!-- Listing Start -->
+                    <!-- <div class="listing listing-list">
+                        <div class="listing-body">
+                            <div class="listing-author">
+                                <div class="listing-author-body">
+                                    <p> <a href="#">Randy Blue</a> </p>
+                                    <span class="listing-date">March 3, 2020</span>
+                                </div>
+                            </div>
+                        <a href="mailto:+123456789"> <i class="fas fa-envelope"></i> b@gmail.com</a>&nbsp;
+                            <a href="tel:+123456789"> <i class="fas fa-phone"></i> +123456789</a>
+                            <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <div class="listing-gallery-wrapper">
+                                <a href="#" data-toggle="tooltip" title="delete" class="listing-gallery"> <i class="fa fa-trash"></i> </a>
+                                <a routerLink='/home-v3' data-toggle="tooltip" title="edit" class="listing-gallery"> <i class="fa fa-edit"></i> </a>
+                            
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Listing End -->
+                    <!-- Listing Start -->
+                    <!-- <div class="listing listing-list">
+                        <div class="listing-body">
+                            <div class="listing-author">
+                                <div class="listing-author-body">
+                                    <p> <a href="#">Randy Blue</a> </p>
+                                    <span class="listing-date">March 3, 2020</span>
+                                </div>
+                            </div>
+                        <a href="mailto:+123456789"> <i class="fas fa-envelope"></i> r@gamil.com</a>&nbsp;
+                            <a href="tel:+123456789"> <i class="fas fa-phone"></i> +123456789</a>
+                            <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <div class="listing-gallery-wrapper">
+                                <a href="#" data-toggle="tooltip" title="delete" class="listing-gallery"> <i class="fa fa-trash"></i> </a>
+                                <a routerLink='/home-v3' data-toggle="tooltip" title="edit" class="listing-gallery"> <i class="fa fa-edit"></i> </a>
+                            
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Listing End -->
+                    <!-- Listing Start -->
+                    <!-- <div class="listing listing-list">
+                        <div class="listing-body">
+                            <div class="listing-author">
+                                <div class="listing-author-body">
+                                    <p> <a href="#">Randy Blue</a> </p>
+                                    <span class="listing-date">March 3, 2020</span>
+                                </div>
+                            </div>
+                        <a href="mailto:+123456789"> <i class="fas fa-envelope"></i> r@gamil.com</a>&nbsp;
+                            <a href="tel:+123456789"> <i class="fas fa-phone"></i>+123456789</a>
+                            <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <div class="listing-gallery-wrapper">
+                                <a href="#" data-toggle="tooltip" title="delete" class="listing-gallery"> <i class="fa fa-trash"></i> </a>
+                                <a routerLink='/home-v3' data-toggle="tooltip" title="edit" class="listing-gallery"> <i class="fa fa-edit"></i> </a>
+                            
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Listing End -->
+                            <!-- Pagination Start -->
+                            <!-- <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#"> <i class="fas fa-chevron-left"></i> </a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#"> <i class="fas fa-chevron-right"></i> </a></li>
+                            </ul> -->
+                            <div>
+                                <pagination-controls class="pagination "  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                            </div>
+                            <!-- Pagination End -->
+                </div>
+                <!-- Posts End -->
+                <div class="col-lg-6 mb-lg-30 acr-dots-wrapper acr-single-img-wrapper">
+                    <img src="assets/img/listings-list/3.jpg" alt="img">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam sed, vero eaque perspiciatis incidunt maiores in assumenda fugit omnis sint, veritatis at fugiat expedita delectus ducimus labore, sit tempora hic.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam sed, vero eaque perspiciatis incidunt maiores in assumenda fugit omnis sint, veritatis at fugiat expedita delectus ducimus labore, sit tempora hic.
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam sed, vero eaque perspiciatis incidunt maiores in assumenda fugit omnis sint, veritatis at fugiat expedita delectus ducimus labore, sit tempora hic.</p>
+                    <div class="acr-dots"></div>
+                </div>
+            </div>
+        </div>
+           <!-- noapointment block -->
+           <ng-template #noappointment>
+            <div class="alert alert-info">
+                <strong>Sorry !!</strong> Currently No Appointments..!!
+            </div>
+        </ng-template>
+        <!-- noapointment block End -->
+    </div>
+<!-- Listings End -->
+</div>
+<!--  Form Start -->
+<div class="section pt-0">
+    <div class="container">
+        <div class="section-title-wrap section-header">
+            <h5 class="custom-primary">ADD</h5>
+            <h2 class="title">An Appointment</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="alert alert-primary" role="alert">
+                    <strong>Notice !!</strong> Your Date Of Appointment is on Your current Date
+                 </div>
+                <div class="comment-form mb-lg-30">
+                    <form [formGroup]="appointformdetails" >
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>Preferred Time</label><br>
+                                <label for="appt">Select a time:</label>&nbsp;
+                                 <input type="time" formControlName="preferredTime"  required><br>
+                                 <span *ngIf="timereq.invalid  && timereq.touched " class="error">*Required</span>
+                                <!-- <input type="text" class="form-control" placeholder="Enter the" formControlName="preferredTime"> -->
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Refrence Number(Optional)</label>
+                                <input type="text" class="form-control" placeholder="Enter The Refrence Number" formControlName="referenceNumber">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label>Property ID (Optional)</label>
+                                <input type="text" class="form-control" placeholder="Enter The Property ID"  formControlName="propertyID">
+                            </div>
+                            <!-- <div class="col-md-12 form-group">
+                                <label>Your Message</label>
+                                <textarea class="form-control" placeholder="Type your message..." name="comment" rows="7"></textarea>
+                            </div> -->
+                        </div>
+                        <button type="submit" class="btn-custom primary" name="submit"  (click)="addapoinment()">Add Appointment</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <!-- FAQs Start -->
+                <div class="accordion with-gap" id="faqAccordions2">
+                    <div class="card">
+                        <div class="card-header" data-toggle="collapse" role="button" data-target="#faqFour" aria-expanded="true" aria-controls="faqFour">
+                            How can I submit my listing?
+                        </div>
+                        <div id="faqFour" class="collapse show" data-parent="#faqAccordions2">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                    tempor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" data-toggle="collapse" role="button" data-target="#faqFive" aria-expanded="false" aria-controls="faqFive">
+                            For how long does my listing stay posted?
+                        </div>
+                        <div id="faqFive" class="collapse" data-parent="#faqAccordions2">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                    tempor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" data-toggle="collapse" role="button" data-target="#faqSix" aria-expanded="false" aria-controls="faqSix">
+                            Can I submit listings for free?
+                        </div>
+                        <div id="faqSix" class="collapse" data-parent="#faqAccordions2">
+                            <div class="card-body">
+                                <p class="mb-0">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                    tempor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAQs End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form End -->
+<app-footer></app-footer>

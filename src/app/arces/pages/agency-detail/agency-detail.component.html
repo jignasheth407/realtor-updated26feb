@@ -1,0 +1,369 @@
+<app-header></app-header>
+<div class="header-1"></div>
+<!-- Subheader Start -->
+<div class="subheader bg-cover bg-center dark-overlay" style="background-image: url('assets/img/subheader.jpg')">
+    <div class="container">
+        <div class="subheader-inner">
+            <h1 class="text-white">Users Details</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Users Details</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Subheader End -->
+<div class="section agent-wrapper">
+    <div class="container">
+        <div class="row">
+            <!-- User Sidebar Start -->
+            <!-- <div class="col-lg-4">
+                <div class="sidebar sticky-sidebar sidebar-left">
+                    <div class="sidebar-widget">
+                        <ul class="nav nav-tabs tab-cards" id="brokerDetailsTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="listings-tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false">Added Propertys</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="agents-tab" data-toggle="tab" href="#agents" role="tab" aria-controls="agents" aria-selected="false">Users</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-widget sidebar-widget-agent">
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-lg-8">
+                <div class="tab-pane fade show active" id="listings" role="tabpanel" aria-labelledby="listings-tab">
+                    <div class="row">
+                        <!-- <div class="col-md-12 form-group">
+                            <form [formGroup]="searchuser" (ngSubmit)="searchid()">
+                            <input  name="content" rows="4" required class="form-control" placeholder="Serch by UserName#"  pattern="[a-zA-Z ]*" formControlName="search" >
+                            <span class="error" *ngIf="searchbox.invalid && searchbox.touched">*Required</span>                            <br>
+                            <button type="submit" class="col-md-5 btn-custom secondary" name="submit" >SEARCH</button>
+                            </form>
+                        </div> -->
+                        <div class="col-md-6" *ngIf="statussearchid">
+                            <h3>Searched Data</h3>
+                            <div class="listing">
+                                <div class="listing-body">
+                                    <div class="listing-author">
+                                        <div class="listing-author-body">
+                                        </div>
+                                    </div>
+                                    <h5 class="listing-title">Full Name : {{ searchiddata.firstName }} {{ searchiddata.firstName }}</h5>
+                                    <span class="listing-price"><span>Email : {{ searchiddata.email }}</span> </span>
+                                    <p class="listing-text">CompanyId: {{ searchiddata.email }}<br>
+                                        ID : {{ searchiddata.id }}<br>
+                                        IsActive : <span *ngIf="searchiddata.isActive else offline">Online</span>
+                                        <ng-template #offline>
+                                        <span>Offline</span>   
+                                        </ng-template>
+                                        <br>
+                                        IsAdmin :  <span *ngIf="searchiddata.isAdmin else notad">YES</span>
+                                        <ng-template #notad>
+                                        <span>NO</span>   
+                                        </ng-template>
+                                        <br>
+                                        Password : {{searchiddata.password}}<br>
+                                        PhoneNo : {{ searchiddata.phoneNo }}<br>
+                                        UserName : {{ searchiddata.userName }}<br>
+                                        UserTypeId : {{ searchiddata.userTypeId }}<br>
+                                    </p>
+                                    <div class="listing-gallery-wrapper">
+                                        <a  class=""></a>
+                                        <a data-toggle="tooltip" title="delete" class="listing-gallery" (click)="deleteuser(searchiddata.id)"> <i class="fa fa-trash"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>   
+            </div>
+            <div class="col-lg-8">
+                <div class="tab-content m-0" id="brokerDetailsTabContent">
+                    <!-- Listings Tab Start -->
+                    <div class="tab-pane fade show active" id="listings" role="tabpanel" aria-labelledby="listings-tab">
+                        <h3>Users List</h3>
+                        <div class="row">
+                            <!-- Listing Start -->
+                            <div class="col-md-6" *ngFor="let userlists of userlist | paginate : { id : 'listing_pagination', itemsPerPage : 6,currentPage : page,totalItems:totalrecords }">
+                                <div class="listing">
+                                    <!-- <div class="listing-thumbnail">
+                                        <a routerLink='/listing-detail-v1'><img src="assets/img/listings/1.jpg" alt="listing"></a>
+                                        <div class="listing-badges">
+                                            <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+                                            <span class="listing-badge pending"> Pending</span>
+                                        </div>
+                                        <div class="listing-controls">
+                                            <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                                            <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                        </div>
+                                    </div> -->
+                                    <div class="listing-body">
+                                        <div class="listing-author">
+                                            <div class="listing-author-body">
+                                            </div>
+                                        </div>
+                                        <h5 class="listing-title">Full Name : {{ userlists.firstName }} {{ userlists.firstName }}</h5>
+                                        <span class="listing-price"><span>Email : {{ userlists.email }}</span> </span>
+                                        <p class="listing-text">CompanyId: {{ userlists.email }}<br>
+                                            ID : {{ userlists.id }}<br>
+                                            IsActive : <span *ngIf="userlists.isActive else offline">Online</span>
+                                            <ng-template #offline>
+                                            <span>Offline</span>   
+                                            </ng-template>
+                                            <br>
+                                            IsAdmin :  <span *ngIf="userlists.isAdmin else notad">YES</span>
+                                            <ng-template #notad>
+                                            <span>NO</span>   
+                                            </ng-template>
+                                            <br>
+                                            Password : {{userlists.password}}<br>
+                                            PhoneNo : {{ userlists.phoneNo }}<br>
+                                            UserName : {{ userlists.userName }}<br>
+                                            UserTypeId : {{ userlists.userTypeId }}<br>
+                                        </p>
+                                        <!-- <div class="acr-listing-icons">
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                                <i class="flaticon-bedroom"></i>
+                                                <span class="acr-listing-icon-value">3</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                                <i class="flaticon-bathroom"></i>
+                                                <span class="acr-listing-icon-value">2</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                                <i class="flaticon-ruler"></i>
+                                                <span class="acr-listing-icon-value">2,499</span>
+                                            </div>
+                                        </div> -->
+                                        <div class="listing-gallery-wrapper">
+                                            <a  class=""></a>
+                                            <a data-toggle="tooltip" title="delete" class="listing-gallery" (click)="deleteuser(userlists.id)"> <i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Pagination Start -->
+                            <div>
+                                <pagination-controls class="pagination "  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                            </div>
+                             <!-- Pagination End -->
+                            <!-- <div class="col-md-6">
+                                <div class="listing">
+                                    <div class="listing-thumbnail">
+                                        <a routerLink='/listing-detail-v1'><img src="assets/img/listings/1.jpg" alt="listing"></a>
+                                        <div class="listing-badges">
+                                            <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+                                            <span class="listing-badge sale">On Sale</span>
+                                        </div>
+                                        <div class="listing-controls">
+                                            <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                                            <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="listing-body">
+                                        <div class="listing-author">
+                                            <div class="listing-author-body">
+                                            </div>
+                                        </div>
+                                        <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="Iris Watson, Frederick Nebraska 20620">Iris Watson, Frederick Nebraska 20620</a> </h5>
+                                        <span class="listing-price">3,500$ <span>/month</span> </span>
+                                        <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <div class="acr-listing-icons">
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                                <i class="flaticon-bedroom"></i>
+                                                <span class="acr-listing-icon-value">3</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                                <i class="flaticon-bathroom"></i>
+                                                <span class="acr-listing-icon-value">2</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                                <i class="flaticon-ruler"></i>
+                                                <span class="acr-listing-icon-value">2,499</span>
+                                            </div>
+                                        </div>
+                                        <div class="listing-gallery-wrapper">
+                                            <a routerLink='/listing-detail-v1' class="btn-custom btn-sm secondary">View Details</a>
+                                            <a href="#" data-toggle="tooltip" title="delete" class="listing-gallery"> <i class="fa fa-trash"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="col-md-6">
+                                <div class="listing">
+                                    <div class="listing-thumbnail">
+                                        <a routerLink='/listing-detail-v1'><img src="assets/img/listings/1.jpg" alt="listing"></a>
+                                        <div class="listing-badges">
+                                            <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+                                            <span class="listing-badge pending"> Pending</span>
+                                        </div>
+                                        <div class="listing-controls">
+                                            <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                                            <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="listing-body">
+                                        <div class="listing-author">
+                                            <div class="listing-author-body">
+                                            </div>
+                                        </div>
+                                        <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="Iris Watson, Frederick Nebraska 20620">Iris Watson, Frederick Nebraska 20620</a> </h5>
+                                        <span class="listing-price">3,500$ <span>/month</span> </span>
+                                        <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <div class="acr-listing-icons">
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                                <i class="flaticon-bedroom"></i>
+                                                <span class="acr-listing-icon-value">3</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                                <i class="flaticon-bathroom"></i>
+                                                <span class="acr-listing-icon-value">2</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                                <i class="flaticon-ruler"></i>
+                                                <span class="acr-listing-icon-value">2,499</span>
+                                            </div>
+                                        </div>
+                                        <div class="listing-gallery-wrapper">
+                                            <a routerLink='/listing-detail-v1' class="btn-custom btn-sm secondary">View Details</a>
+                                            <a href="#" data-toggle="tooltip" title="delete" class="listing-gallery"> <i class="fa fa-trash"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- Listing End -->
+                            <!-- Listing Start -->
+                            <!-- <div class="col-md-6">
+                                <div class="listing">
+                                    <div class="listing-thumbnail">
+                                        <a routerLink='/listing-detail-v1'><img src="assets/img/listings/1.jpg" alt="listing"></a>
+                                        <div class="listing-badges">
+                                            <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+                                            <span class="listing-badge pending"> Pending</span>
+                                        </div>
+                                        <div class="listing-controls">
+                                            <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                                            <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="listing-body">
+                                        <div class="listing-author">
+                                            <div class="listing-author-body">
+                                            </div>
+                                        </div>
+                                        <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="Iris Watson, Frederick Nebraska 20620">Iris Watson, Frederick Nebraska 20620</a> </h5>
+                                        <span class="listing-price">3,500$ <span>/month</span> </span>
+                                        <p class="listing-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <div class="acr-listing-icons">
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                                <i class="flaticon-bedroom"></i>
+                                                <span class="acr-listing-icon-value">3</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                                <i class="flaticon-bathroom"></i>
+                                                <span class="acr-listing-icon-value">2</span>
+                                            </div>
+                                            <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                                <i class="flaticon-ruler"></i>
+                                                <span class="acr-listing-icon-value">2,499</span>
+                                            </div>
+                                        </div>
+                                        <div class="listing-gallery-wrapper">
+                                            <a routerLink='/listing-detail-v1' class="btn-custom btn-sm secondary">View Details</a>
+                                            <a href="#" data-toggle="tooltip" title="delete" class="listing-gallery"> <i class="fa fa-trash"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- Listing End -->
+                        </div>
+                    </div>
+                    <!-- Listings Tab End -->
+                    <!-- Users Tab Start -->
+                    <div class="tab-pane fade" id="agents" role="tabpanel" aria-labelledby="agents-tab">
+                        <div class="row">
+                            <!-- Users Start -->
+                            <div class="col-lg-6">
+                                <div class="acr-agent">
+                                    <div class="listing-badge featured">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="acr-dots-wrapper acr-agent-thumb">
+                                        <div class="acr-dots"></div>
+                                        <a routerLink='/agent-detail'><img src="assets/img/agents/1.jpg" alt="agent"></a>
+                                    </div>
+                                    <div class="acr-agent-body">
+                                        <h6> <a routerLink='/agent-detail'>Randy Blue</a> </h6>
+                                        <span>Expert at Company</span>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                        <a routerLink='/agent-detail' class="btn-custom secondary btn-sm">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Users End -->
+                            <!-- Users Start -->
+                            <div class="col-lg-6">
+                                <div class="acr-agent">
+                                    <div class="acr-dots-wrapper acr-agent-thumb">
+                                        <div class="acr-dots"></div>
+                                        <a routerLink='/agent-detail'><img src="assets/img/agents/2.jpg" alt="agent"></a>
+                                    </div>
+                                    <div class="acr-agent-body">
+                                        <h6> <a routerLink='/agent-detail'>Rinda Flow</a> </h6>
+                                        <span>Expert at Company</span>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                        <a routerLink='/agent-detail' class="btn-custom secondary btn-sm">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Users End -->
+                            <!-- Users Start -->
+                            <div class="col-lg-6">
+                                <div class="acr-agent">
+                                    <div class="acr-dots-wrapper acr-agent-thumb">
+                                        <div class="acr-dots"></div>
+                                        <a routerLink='/agent-detail'><img src="assets/img/agents/3.jpg" alt="agent"></a>
+                                    </div>
+                                    <div class="acr-agent-body">
+                                        <h6> <a routerLink='/agent-detail'>Gina Mconihon</a> </h6>
+                                        <span>Expert at Company</span>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                        <a routerLink='/agent-detail' class="btn-custom secondary btn-sm">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Users End -->
+                            <!-- Users Start -->
+                            <div class="col-lg-6">
+                                <div class="acr-agent">
+                                    <div class="listing-badge featured">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="acr-dots-wrapper acr-agent-thumb">
+                                        <div class="acr-dots"></div>
+                                        <a routerLink='/agent-detail'><img src="assets/img/agents/4.jpg" alt="agent"></a>
+                                    </div>
+                                    <div class="acr-agent-body">
+                                        <h6> <a routerLink='/agent-detail'>Oliver Rasky</a> </h6>
+                                        <span>Expert at Company</span>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                                        <a routerLink='/agent-detail' class="btn-custom secondary btn-sm">View Profile</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Users End -->
+                        </div>
+                    </div>
+                    <!-- Users Tab End -->
+                </div>
+            </div>
+            <!-- users Tabs End -->
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

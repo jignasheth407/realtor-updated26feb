@@ -1,0 +1,92 @@
+<app-header></app-header>
+<div class="header-1"></div>
+<!-- Subheader Start -->
+<div class="subheader bg-cover bg-center dark-overlay" style="background-image: url('https://jssors8.azureedge.net/demos/image-slider/img/px-beach-daylight-fun-1430675-image.jpg')">
+    <div class="container">
+        <div class="subheader-inner">
+            <h1 class="text-white">Featured Listing</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Featured Listing</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Subheader End -->
+<!-- Listings Start -->
+<div class="section section-padding pt-0 listings" style="margin-top:100px;">
+    <div class="container">
+        <div class="section-title-wrap section-header flex-header">
+            <div class="section-title-text">
+                
+                <h1 class="title">Featured Property</h1>
+            </div>
+            <div class="acr-arrows primary-arrows">
+                <!-- <i class="slider-prev fas fa-arrow-left slick-arrow" (click)="prev()"></i>
+                <i class="slider-next fas fa-arrow-right slick-arrow" (click)="next()"></i> -->
+            </div>
+        </div>
+        <div *ngIf="loading" >
+            <div class="spinner"></div>
+         <!-- <div class="text-center">
+            <div class="spinner-grow text-primary" id="spinner"></div>
+         </div> -->
+
+        </div>
+        
+        <div class="row">
+            
+            <div class="listings-slider" *ngFor="let featurelistdetails of featurelistdata">
+           <div class="listing" *ngFor="let featurelistown of featurelistdetails.Results | paginate : { id : 'listing_pagination', itemsPerPage : 5,currentPage : page,totalItems:totalrecords } " style="max-width: 340px; height: 480px;margin:10px;">   
+             <div class="listing-thumbnail">
+               <a routerLink='/listing-detail-v1'><img src="{{ featurelistown.Property.Photo[0].HighResPath }}" alt="listing" style="max-height: 180px; min-width: 320px;"></a>
+               <div class="listing-badges">
+                   
+                   <span class="listing-badge pending">Sale</span>
+               </div>
+               <div class="listing-controls">
+                   <a href="#" class="favorite" (click)="saveproperty(featurelistown.MlsNumber)"><i class="far fa-heart"></i></a>
+                   <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+               </div>
+             </div>
+             <div class="listing-body">
+                               
+               <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="{{ featurelistown.Property.Address.AddressText }}">{{ featurelistown.Property.Address.AddressText }}</a> </h5>
+               <span class="listing-price">{{ featurelistown.Property.Price }} </span>
+              
+               <div class="acr-listing-icons" style="min-height: 80px;">
+                   <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                       <i class="flaticon-bedroom"></i>
+                       <span class="acr-listing-icon-value">{{ featurelistown.Building.Bedrooms }}</span>
+                   </div>
+                   <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                       <i class="flaticon-bathroom"></i>
+                       <span class="acr-listing-icon-value">{{ featurelistown.Building.BathroomTotal }}</span>
+                   </div>
+                   <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                       <i class="flaticon-ruler"></i>
+                       <span class="acr-listing-icon-value">{{ featurelistown.Land.SizeTotal }}</span>
+                   </div>
+                   <br>
+                </div>
+                
+                 
+                   <a routerLink='/listing-detail-v1/{{ featurelistown.Id }}'class="btn-custom btn-sm secondary"  id="viewdetail">View Details</a>
+                  <br>
+               
+             </div>
+            </div> 
+           </div>
+           
+           
+        </div>
+        <div>
+            <pagination-controls class="pagination "  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    
+    </div>
+</div>
+<!-- Listings End -->
+<app-footer></app-footer>

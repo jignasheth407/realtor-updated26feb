@@ -1,0 +1,58 @@
+<div class="sidebar">
+    <!-- <div class="sidebar-widget">
+        <form method="">
+            <h5>Search Posts</h5>
+            <div class="search-wrapper">
+                <input type="text" class="form-control" placeholder="Search" name="sidebar-search" value="">
+                <button type="submit" class="btn-custom" name="button"><i class="flaticon-search"></i></button>
+            </div>
+        </form>
+    </div> -->
+    <!-- <div class="sidebar-widget sidebar-list">
+        <h5>Popular Categories</h5>
+        <ul>
+            <li> <a href="#"> Living Rooms <span>(24)</span> <i class="fas fa-chevron-right"></i> </a> </li>
+            <li> <a href="#"> Real Estate <span>(16)</span> <i class="fas fa-chevron-right"></i> </a> </li>
+            <li> <a href="#"> Kitchens <span>(32)</span> <i class="fas fa-chevron-right"></i> </a> </li>
+            <li> <a href="#"> Flats <span>(22)</span> <i class="fas fa-chevron-right"></i> </a> </li>
+            <li> <a href="#"> Luxury <span>(15)</span> <i class="fas fa-chevron-right"></i> </a> </li>
+            <li> <a href="#"> Bed Rooms <span>(8)</span> <i class="fas fa-chevron-right"></i> </a> </li>
+        </ul>
+    </div>
+    <div class="sidebar-widget tags">
+        <h5>Popular Tags</h5>
+        <a href="#">House</a>
+        <a href="#">Real Estate</a>
+        <a href="#">Building</a>
+        <a href="#">Agency</a>
+        <a href="#">Family</a>
+        <a href="#">Acres</a>
+        <a href="#">Baths</a>
+        <a href="#">Rooms</a>
+    </div> -->
+    <br>
+    <div class="comment-form section p-0" *ngIf="adminstates">
+        <h5>Manage Blogs</h5>
+        <form [formGroup]="writtenblog">
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control"  required placeholder="Title" formControlName="title">
+                    <span class="error" *ngIf="title.invalid && title.touched">*Required</span>
+                </div>
+                <div class="col-md-12 form-group">
+                    <label>Blog</label>
+                    <textarea class="form-control" required placeholder="Type your Blog..." formControlName="description" rows="7"></textarea>
+                    <span class="error" *ngIf="description.invalid && description.touched">*Required</span>
+                </div>
+                <div class="col-md-12 form-group">
+                    <label>Url</label>
+                    <input class="form-control" required placeholder="Add URL..!!" formControlName="url" rows="7">
+                    <span class="error" *ngIf="url.invalid && url.touched">*Required</span>
+                </div>
+            </div>
+            <button type="submit" class="btn-custom primary" (click)="makeblog()">Add Blogs</button>
+
+        </form>
+    </div>
+</div>

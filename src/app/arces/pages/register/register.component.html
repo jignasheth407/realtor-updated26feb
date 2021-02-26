@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="acr-auth-container">
+    <div class="acr-auth-content">
+        <form [formGroup]="usersdetails" (ngSubmit)="entereddata()">
+            <div class="auth-text"> 
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+                <h3>Create An Account</h3>
+            </div>
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control form-control-light" placeholder="Enter the FirstName" formControlName="FirstName">
+                <span *ngIf="firstname.invalid && firstname.touched " class="error">*Required</span>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control form-control-light" placeholder="Enter the LastName" formControlName="LastName">
+                <span *ngIf="lastname.invalid && lastname.touched " class="error">*Required</span>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control form-control-light" placeholder="Enter the Username" formControlName="UserName">
+                <span *ngIf="username.invalid && username.touched " class="error">*Required</span>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" class="form-control form-control-light" placeholder="Enter the Email Address" formControlName="Email">
+                <span *ngIf="email.invalid && email.touched " class="error">*Required</span>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control form-control-light" placeholder="Enter the Password" formControlName="Password">
+                <span *ngIf="password.invalid && password.touched " class="error">*Required</span>
+            </div>
+            <div class="form-group">
+                <label>Phone No</label>
+                <input type="text" minlength="2" maxlength="10" class="form-control form-control-light" placeholder="Enter the Phone No" formControlName="PhoneNo">
+                <span *ngIf="phoneno.invalid && phoneno.touched " class="error">*Required</span>
+            </div>
+           <a><button type="submit" class="btn-custom secondary btn-block" >Register</button></a>
+            <div class="auth-seperator">
+                <span>OR</span>
+            </div>
+            <div class="social-login">
+                <button type="button" class="acr-social-login facebook"><i class="fab fa-facebook-f"></i> Continue with Facebook </button>
+                <button type="button" class="acr-social-login google"><i class="fab fa-google"></i> Continue with Google</button>
+            </div>
+            <p class="text-center mb-0">Already have an account? <a routerLink='/login'>Login</a> </p>
+        </form>
+    </div>
+    <div class="acr-auth-bg">
+        <div class="acr-auth-bg-slider acr-cs-bg-slider">
+            <div class="acr-auth-bg-item bg-cover bg-center" style="background-image: url('assets/img/coming-soon/2.jpg')">
+                <div class="acr-auth-quote">
+                    <h6>Quote of the day</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+            </div>
+            <div class="acr-auth-bg-item bg-cover bg-center" style="background-image: url('assets/img/coming-soon/3.jpg')">
+                <div class="acr-auth-quote">
+                    <h6>Quote of the day</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+            </div>
+            <div class="acr-auth-bg-item bg-cover bg-center" style="background-image: url('assets/img/coming-soon/1.jpg')">
+                <div class="acr-auth-quote">
+                    <h6>Quote of the day</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

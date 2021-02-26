@@ -1,0 +1,18 @@
+.spinner{
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    /* background: url('C:\Users\NEC\Desktop\allapi integration\src\assets\img\blog\giphy (1).gif'); */
+    background-size: 100%;
+    
+}
+#viewdetail
+{
+    position:absolute;
+/* right: 50px !important;
+bottom: 3px !important; */
+}

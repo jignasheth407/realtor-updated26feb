@@ -1,0 +1,59 @@
+.error{
+    color: red;
+}
+.btn1:active:after {
+    content: ' \007C';
+  }
+  #viewdetail
+  {
+      position:absolute;
+      
+  
+  }
+  
+     .btn1 {
+      background:white;
+      height: 30px;
+      min-width: 50px;
+      border: none;
+      color: black;
+      font-size: 20px;
+      font-family: 'Times New Roman', Times, serif;
+     
+    }
+    
+    .btn:hover{
+      background: transparent;
+    }
+    
+    .btn1:hover  #circle {
+      
+      border-bottom: 3px solid black;
+      left: 0;
+    }
+   
+  .active ,.btn1:active{
+      
+      border-bottom: 3px solid black!important;
+     
+      
+      
+    }
+    .spinner{
+      position: absolute;
+      height: 100px;
+      width: 100px;
+      top: 50%;
+      left: 50%;
+      margin-left: -50px;
+      margin-top: -50px;
+      /* background: url('C:\Users\NEC\Desktop\api completed realtor\src\assets\img\giphy (1).gif'); */
+      background-size: 100%;
+      
+  }
+  
+.btn-custom.secondary {
+  background-color: #01BBBC;
+  margin-left: 150px;
+  margin-top: 5px;
+}

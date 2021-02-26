@@ -1,0 +1,179 @@
+<app-header></app-header>
+<div class="header-1"></div>
+<!-- Subheader Start -->
+<div class="subheader bg-cover bg-center dark-overlay" style="background-image: url('https://wowslider.com/sliders/demo-18/data1/images/shanghai.jpg')">
+    <div class="container">
+        <div class="subheader-inner">
+            <h1 class="text-white">Blog List</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> </a></li>
+                    <li class="breadcrumb-item"><a >Blogs</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blog List</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Subheader End -->
+<!-- Blog Posts Start -->
+<div class="section posts">
+    <div class="container">
+        <div class="row">
+            <!-- Posts Start -->
+            <div class="col-lg-12">
+                <!-- Post Start -->
+                <div class="sidebar-widget">
+                    <h5>Blog Posts</h5>
+
+              <div *ngIf="getblogs.length >  0 else noblogs">
+                        <!-- <article class="media" *ngFor="let getblog of getblogs | paginate : { id : 'listing_pagination', itemsPerPage : 5,currentPage : page,totalItems:totalrecords }" >
+                            <a href="#"><img src="assets/img/blog-sm/1.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">{{ getblog.title }}</a> </h6>
+                               <p>{{ getblog.description }}</p><a href="{{ getblog.url }}" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <!-- <button type="submit" class="btn-custom primary btn-sm" name="button" *ngIf="accessstates">Update Blogs</button>&nbsp; -->
+                                <!-- <button type="submit" class="btn-custom primary btn-sm" (click)="deleteblog( getblog.id )" *ngIf="accessstates">Delete Blogs</button>
+                            </div>
+                        </article> --> 
+
+                        <!-- demo start-->
+                        <div class="col-lg-8">
+                        <article class="post" *ngFor="let getblog of getblogs | paginate : { id : 'listing_pagination', itemsPerPage : 3,currentPage : page,totalItems:totalrecords }">
+                            
+                            <div class="post-body">
+                                
+                                <div class="post-author">
+                                    
+                                    
+                                    
+                                </div>
+                                <h5 class="post-title"> <a routerLink='/blog-single'> {{ getblog.title }}</a> </h5>
+                                <p class="post-text">{{ getblog.description }}
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                </p>
+                                <div class="post-controls">
+                                    <a href="{{ getblog.url }}" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                    <button type="submit" class="btn-custom primary btn-sm" (click)="deleteblog( getblog.id )" *ngIf="accessstates">Delete Blogs</button>
+                                    
+                                    <div class="post-comment-authors">
+                                        <span>Comments by: </span>
+                                        <div class="post-comment-authors-img">
+                                            <a href="{{ getblog.url }}"> <img src="assets/img/people/3.jpg" alt="comment author"> </a>
+                                            <a href="#"> <img src="assets/img/people/4.jpg" alt="comment author"> </a>
+                                            <a href="#"> +3 </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <div > 
+                        
+                            <pagination-controls class="pagination"  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                        </div>
+                    </div>
+                        <!--demo end-->
+                        <!-- <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/2.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">How to enable better agents in an agency</a> </h6>
+                                <span>January 24, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+                            </div>
+                        </article> -->
+                        <!-- <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/3.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">Real estate is booming in the west and east</a> </h6>
+                                <span>January 26, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+                            </div>
+                        </article> -->
+                        <!-- <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/4.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">What agencies are looking for in an agent</a> </h6>
+                                <span>January 28, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+                            </div>
+                        </article> -->
+                    <!-- </div> -->
+                    <!-- Post End -->
+                    <!-- Post Start -->
+                    <!-- <div class="sidebar-widget">
+                        <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/1.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">Green neighborhood starts tomorrow</a> </h6>
+                                <span>January 22, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+
+                            </div>
+                        </article>
+                        <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/2.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">How to enable better agents in an agency</a> </h6>
+                                <span>January 24, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+
+                            </div>
+                        </article>
+                        <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/3.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">Real estate is booming in the west and east</a> </h6>
+                                <span>January 26, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+
+                            </div>
+                        </article>
+                        <article class="media">
+                            <a href="#"><img src="assets/img/blog-sm/4.jpg" alt="post"></a>
+                            <div class="media-body">
+                                <h6> <a href="#">What agencies are looking for in an agent</a> </h6>
+                                <span>January 28, 2020</span>&nbsp;<a href="#" class="btn-custom secondary btn-sm">Read More</a>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Update Blogs</button>&nbsp;
+                                <button type="submit" class="btn-custom primary btn-sm" name="button">Delete Blogs</button>
+
+                            </div>
+                        </article>
+                    </div> -->
+                    <!-- Post End -->
+                    <!-- Pagination Start -->
+                    <!-- <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#"> <i class="fas fa-chevron-left"></i> </a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#"> <i class="fas fa-chevron-right"></i> </a></li>
+                    </ul> -->
+                    
+                  
+                    <!-- Pagination End -->
+        </div> 
+        <ng-template #noblogs>
+            <div class="alert alert-info">
+                No , Blogs to Show ToDay..!!
+               </div>   
+        </ng-template>           
+            </div>
+            <!-- Posts End -->  
+            <!-- Sidebar Start -->
+            <div class="col-lg-12">
+                <app-blog-sidebar></app-blog-sidebar>
+            </div>
+            <!-- Sidebar End -->
+        </div>
+    </div>
+</div>
+<!-- Blog Posts End -->
+<app-footer></app-footer>

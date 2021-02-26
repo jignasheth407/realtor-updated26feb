@@ -1,0 +1,90 @@
+<!-- Footer Start -->
+<footer class="acr-footer footer-2">
+    <!-- Footer Top Start -->
+    <!-- Footer Top End -->
+    <!-- Footer Middle Start -->
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-sm-4 footer-widget">
+                    <h5 class="widget-title">Menu</h5>
+                    <ul>
+                        <li> <a routerLink='/listing-map'>Find Home</a> </li>
+                        <li> <a routerLink='/submit-listing'>Add Listing</a> </li>
+                        <li> <a routerLink='/listing-map'>Listings</a> </li>
+                        <li> <a routerLink='/blog-grid'>Blog</a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-sm-4 footer-widget">
+                    <h5 class="widget-title">Information</h5>
+                    <ul>
+                        <li> <a routerLink='/about'>About Us</a> </li>
+                        <li> <a routerLink='/contact'>Contact Us</a> </li>
+                        <li> <a routerLink='/services'>Services</a> </li>
+                        <li> <a routerLink='/faq'>FAQ</a> </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-sm-4 footer-widget">
+                    <h5 class="widget-title">Legal</h5>
+                    <ul>
+                        <li> <a routerLink='/legal'>Privacy Policy</a> </li>
+                        <li> <a routerLink='/legal'>Refund Policy</a> </li>
+                        <li> <a routerLink='/legal'>Cookie Policy</a> </li>
+                        <li> <a routerLink='/legal'>Legal Terms</a> </li>
+                    </ul>
+                </div>
+                <div  class="col-lg-6 footer-widget">
+                    <!-- subcribtion block -->
+                    <div  style="background-color: gray;">
+                        <div class="container">
+                            <div class="subheader-inner">
+                                <h2 class="text-white">SUBSCRIBE TO REALTOR</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <form [formGroup]='subd' (ngSubmit)="subcripdata()">
+                        <div class="row">
+                            <div class="col-md-6 form-group " >
+                                <input type="text" class="form-control" placeholder="First Name" formControlName="FirstName"  required>
+                                <span *ngIf="firstname.invalid && firstname.touched " class="error">*Required</span>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input type="text" class="form-control"  placeholder="Last Name" formControlName="LastName" required>
+                                <span *ngIf="lastname.invalid && lastname.touched " class="error">*Required</span>
+                            </div>
+                            <div class="col-md-9 pt-2 form-group">
+                                <input type="email" class="form-control"  placeholder="Type full email" formControlName="Email" required>
+                                <span *ngIf="email.invalid && email.touched" class="error">*Required</span>
+                            </div>
+                            <div class="col-sm-3 pt-2 form-group">
+                                <button type="submit" class="btn-custom primary"  name="submit">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Middle End -->
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <p class="m-0">&copy; Copyright 2020 - <a href="#">AndroThemes</a> All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-5">
+                    <ul>
+                        <li> <a routerLink='/listing-map'>Find a Home</a> </li>
+                        <li> <a routerLink='/submit-listing'>Add Listing</a> </li>
+                        <li> <a routerLink='/agency'>View Agencies</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom End -->
+</footer>
+<!-- Footer End -->

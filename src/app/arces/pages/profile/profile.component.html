@@ -1,0 +1,321 @@
+<app-header></app-header>
+<div class="header-1"></div>
+<!-- Subheader Start -->
+<div *ngFor="let data of userdatas">
+<div *ngIf="data.id == id">
+    <div class="subheader subheader-2 user-subheader bg-cover bg-center" style="background-image: url('assets/img/subheader-2.jpg')">
+        <div class="container">
+            <div class="media">
+                <img src="assets/img/people/1.jpg" alt="agent">
+                <div class="media-body">
+                    <h3 class="text-white">{{ data.firstName}} {{ data.lastName }}</h3>
+                    <span class="user-email">{{ data.email}}</span>
+                </div>
+                <!-- <a routerLink='/submit-listing' class="btn-custom secondary mr-0">Appointment Request<i class="fas mr-0 fa-plus"></i> </a> -->
+            </div>
+        </div>
+    </div>
+    <!-- Subheader End -->
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="sidebar sticky-sidebar user-nav sidebar-left">
+                        <ul>
+                            <li *ngIf="data.isAdmin"  (click)="editagentdetail()"> <a>Edit Agent Detail</a> </li>
+                            <!-- <li *ngIf="data.isAdmin"> <a>User Details</a> </li> NwesLetter-->
+                            <li> <a  (click)="blockedit()"> Edit Profile</a> </li>
+                            <li> <a (click)='savelisting()'>Saved Properties</a> </li>
+                            <li *ngIf="data.isAdmin" (click)="newsstates()"> <a>News Letter's</a> </li>
+                            <li *ngIf="data.isAdmin"> <a routerLink='/agency-detail'>User Details</a> </li>
+                            <li > <a routerLink='/home-v2' >Manage Appointment</a> </li>
+                            <!-- <li > <a routerLink='/contact' >Contect us Query's</a> </li> -->
+                            <li> <a class="logout" (click)="logout()"><i class="flaticon-shut-down-button"></i> Logout</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="acr-welcome-message">
+                        <h3>Welcome Back,{{ data.firstName}}</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                    </div>
+                    <div *ngIf="blockstates">
+                    <form [formGroup]="updatedata" >
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Full Name</label>
+                                <input type="text"class="form-control" placeholder="{{ data.firstName }} "  formControlName="firstName">
+                                <span class="error" *ngIf="firstname.invalid && firstname.touched">Required</span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>LastName</label>
+                                <input type="text" class="form-control" placeholder=" {{ data.lastName }}"  formControlName="lastName">
+                                <span class="error" *ngIf="lastname.invalid && lastname.touched">Required</span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Username</label>
+                                <input type="text" class="form-control" placeholder="{{ data.userName }}"  formControlName="userName">
+                                <span class="error" *ngIf="phoneno.invalid && phoneno.touched">Required</span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Email Address</label>
+                                <input type="email" class="form-control" placeholder="{{ data.email }}"  formControlName="email">
+                                <span class="error" *ngIf="email.invalid && email.touched">Required</span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Phone Number</label>
+                                <input type="number" class="form-control" placeholder="{{ data.phoneNo }}"  formControlName="phoneNo">
+                                <span class="error" *ngIf="phoneno.invalid && phoneno.touched">Required</span>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Password" value="{{ data.password }}"  formControlName="pwd">
+                                <span class="error" *ngIf="password.invalid && password.touched">Required</span>
+                                   
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Repeat Password</label>
+                                <input type="password" class="form-control" placeholder="Repeat Password"  formControlName="password">
+                                <span class="error" *ngIf="pwd.invalid && pwd.touched">Required</span>
+                            </div>
+                            <!-- <div class="col-lg-6 form-group">
+                                <label>Address One</label>
+                                <input type="text" class="form-control" placeholder="Address" value="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Address Two</label>
+                                <input type="text" class="form-control" placeholder="Address" value="">
+                            </div>
+                             <div class="col-lg-12 form-group">
+                                <label>About Me</label>
+                                <textarea name="about" rows="4" class="form-control" placeholder="About Me"></textarea>
+                            </div> -->
+                        </div>
+                        <button type="submit" name="submit" class="btn-custom" (click)="savechanges()">Save Changes</button>
+                    </form>
+                    </div>
+                    <hr>
+                    <div *ngIf="agentblock">
+                        <form [formGroup]="agentupdatedetails" >
+                            <div class="row">
+                                <div class="col-lg-6 form-group">
+                                    <label>Full Name</label>
+                                    <input type="text"class="form-control" required placeholder="{{ agentdata.firstName }}" value="{{ agentdata.firstName }}" formControlName="firstname">
+                                    <span class="error" *ngIf="agentfirstname.invalid && agentfirstname.touched">Required</span>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" required placeholder="{{ agentdata.lastName }}" value="{{ agentdata.lastName }}" formControlName="lastname">
+                                    <span class="error" *ngIf="agentlastname.invalid && agentlastname.touched">Required</span>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Title</label>
+                                    <input type="text" class="form-control" required placeholder="{{ agentdata.title }}" value="{{ agentdata.title }}" formControlName="title">
+                                    <span class="error" *ngIf="agenttitle.invalid && agenttitle.touched">Required</span>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" class="form-control" required placeholder="{{ agentdata.email }}" value="{{ agentdata.email }}" formControlName="email">
+                                    <span class="error" *ngIf="agentemail.invalid && agentemail.touched">Required</span>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" required placeholder="{{ agentdata.phoneNo }}" value="{{ agentdata.phoneNo }}" formControlName="phoneno">
+                                    <span class="error" *ngIf="agentphoneno.invalid && agentphoneno.touched">Required</span>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>Company Id</label>
+                                    <input type="text" class="form-control" required placeholder="{{ agentdata.companyId }}" value="{{ agentdata.companyId  }} " formControlName="companyId">
+                                    <span class="error" *ngIf="agentcompanyid.invalid && agentcompanyid.touched">Required</span>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <label>ID</label>
+                                    <input type="text" class="form-control" placeholder="{{ agentdata.id }}" readonly >
+                                    <!-- <span class="error">Required</span> -->
+                                </div>
+                                <div class="col-lg-6 form-group media">
+                                    <label>Image</label>&nbsp;
+                                    <img  src="{{ agentdata.imagePath }}" alt="agent">
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="file">Fileuplod</label>
+                                    <input 
+                                        formControlName="file"
+                                        id="file" 
+                                        type="file" 
+                                        class="form-control"
+                                        (change)="onFileChange($event)">
+                                </div> -->
+                            </div>
+                            <button type="submit" name="submit" class="btn-custom" (click)="updateagent()">Save Changes</button>
+                        </form>
+                        </div>
+                        <br>
+                        <!-- NewLetterStart -->
+                        <div *ngIf="newsletterblock">
+                            <table class="table" *ngIf="newsletterdata.length > 0 else nonews">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">CompanyId</th>
+                                    <th scope="col">FirstName</th>
+                                    <th scope="col">LastName</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">IsActive</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let newsletterinfo of newsletterdata  | paginate : { id : 'listing_pagination', itemsPerPage : 4,currentPage : page,totalItems:totalrecords }">
+                                    <th scope="row">{{ newsletterinfo.id }}</th>
+                                    <td>{{ newsletterinfo.companyId }}</td>
+                                    <td>{{ newsletterinfo.firstName }}</td>
+                                    <td>{{ newsletterinfo.lastName }}</td>
+                                    <td>{{ newsletterinfo.email }}</td>
+                                    <td *ngIf=" newsletterinfo.isActive else not">Yes</td>
+                                    <ng-template #not>
+                                        <td>No</td>   
+                                    </ng-template>
+                                    <td ><a (click)="deletenews(newsletterinfo.id)"><i class="fas fa-trash" ></i></a></td>
+                                  </tr>
+                                  <!-- <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                  </tr> -->
+                                  <!-- <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                  </tr> -->
+                                </tbody>
+                              </table>
+                              <ng-template #nonews>
+                                <div class="alert alert-info">
+                                  News List Is Empty..!!
+                                   </div>
+                              </ng-template>
+                                 <!-- Pagination Start -->
+                            <div>
+                                <pagination-controls class="pagination "  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                            </div>
+                             <!-- Pagination End -->
+                        </div>
+                        <!-- NewsLetteEnd -->
+                        
+<!-- save listing -->
+<div class="section" *ngIf="list">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-lg-4">
+                <div class="sidebar sticky-sidebar user-nav sidebar-left">
+                    <ul>
+                        <li> <a routerLink='/profile'> Edit Profile</a> </li>
+                        <li> <a class="active" >Saved Property</a> </li>
+                        <li> <a class="logout" href="#"><i class="flaticon-shut-down-button"></i> Logout</a> </li>
+                    </ul>
+                </div>
+            </div> -->
+            <div class="col-lg-12" >
+                <!-- Listing Start -->
+                <div *ngIf="savelist.length >0 else emptylist">
+                <div *ngFor="let save of savelist  | paginate : { id : 'savelisting_pagination', itemsPerPage : 2,currentPage : page,totalItems:totalrecords }">
+                <div *ngFor="let saves of save.Results">
+                <div class="listing listing-list" >
+                    <div class="listing-thumbnail">
+                        <a ><img src="{{ saves.Property.Photo[0].HighResPath }}" alt="listing"></a>
+                        <div class="listing-badges">
+                            <!-- <span class="listing-badge featured"> <i class="fas fa-star"></i> </span> -->
+                            <span class="listing-badge pending">{{ saves.Property.TransactionType}}</span>
+                        </div>
+                        <!-- <div class="listing-controls">
+                            <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                            <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                            <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+                        </div> -->
+                    </div>
+                    <div class="listing-body">
+                        <div class="listing-author">
+                            <!-- <img src="assets/img/people/1.jpg" alt="author"> -->
+                            <div class="listing-author-body">
+                                <!-- <p> <a href="#">{{ saves.Id }}Randy Blue 1</a> </p> -->
+                                <!-- <span class="listing-date">{{ saves.Property.Photo[0].LastUpdated }}</span> -->
+                            </div>
+                        </div>
+                        <h5 class="listing-title"> <a routerLink='/listing-detail-v1' title="{{ saves.Property.Address.AddressText }} ">I{{ saves.Property.Address.AddressText }}</a> </h5>
+                        <span class="listing-price">{{ saves.Property.ConvertedPrice }}</span>
+                        <!-- <p class="listing-text">{{ saves.PublicRemarks }}.</p> -->
+                        <div class="acr-listing-icons">
+                            <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                <i class="flaticon-bedroom"></i>
+                                <span class="acr-listing-icon-value">{{ saves.Building.Bedrooms }}</span>
+                            </div>
+                            <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                <i class="flaticon-bathroom"></i>
+                                <span class="acr-listing-icon-value">{{ saves.Building.BathroomTotal }}</span>
+                            </div>
+                            <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                <i class="flaticon-ruler"></i>
+                                <span class="acr-listing-icon-value">{{ saves.Land.SizeTotal }}</span>
+                            </div>
+                        </div>
+                        <div class="listing-gallery-wrapper">
+                            <a routerLink='/listing-detail-v1/{{ saves.Id }}/{{ saves.MlsNumber }}' class="btn-custom btn-sm secondary">View Details</a>
+                            <a  data-toggle="tooltip" title="delete" class="listing-gallery" (click)="deletesavelisting(saves.Id)"> <i class="fa fa-trash"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                   <!-- Pagination Start -->
+                   <div>
+                    <pagination-controls class="pagination "  id="savelisting_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+                </div>
+                 <!-- Pagination End -->
+                </div>
+                <!-- Listing End -->
+                <!-- EmptyListing -->
+                <ng-template #emptylist>
+                    <div class="alert alert-info">
+                     You Have No Saved Property's..!!
+                    </div>
+                </ng-template>
+                <!-- End Empty Listing -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- save listing end -->
+                    <!-- <div class="acr-welcome-message">
+                        <h3>Security</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                    </div>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Password" value="">
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <label>Repeat Password</label>
+                                <input type="password" class="form-control" placeholder="Repeat Password" value="">
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <label>Upload Your ID</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="propertyThumbnail">
+                                    <label class="custom-file-label" for="propertyThumbnail">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" name="submit" class="btn-custom">Save Changes</button>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<app-footer></app-footer>
